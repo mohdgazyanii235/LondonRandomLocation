@@ -7,13 +7,9 @@
     <style>
         #map {
             height: 500px;
-            width: 100%;
+            width: 50%;
         }
     </style>
-
-    <script>
-        var random_pcd = "{{ random_pcd }}";
-    </script>
 
 </head>
 
@@ -23,9 +19,9 @@
 
 <script>
     function initMap(){
-        var location = {lat: 51.488258, lng: -0.168466};
+        var location = {lat: {{ random_pcd[1] }}, lng: {{ random_pcd[2] }} };
         var map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 12,
+            zoom: 15,
             center: location
         });
         var marker = new google.maps.Marker({
