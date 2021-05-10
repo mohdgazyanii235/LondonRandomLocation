@@ -6,7 +6,7 @@ from flask_googlemaps import Map
 import jinja2
 
 app = Flask(__name__)
-app.config['GOOGLEMAPS_KEY'] = "AIzaSyBRL6p6u0r-p8-Bl9FXZb-PrzOQrecxPFE"
+app.config['GOOGLEMAPS_KEY'] = "AIzaSyB2gWJN7HHCh-y15I2kw1A5PqOLU22l3z8"
 GoogleMaps(app)
 
 
