@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random London Address</title>
+
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+
+    <script>
+        var random_pcd = "{{ random_pcd }}";
+    </script>
+
+</head>
+
+<body>
+
+<div id="map"></div>
+
+<script>
+    function initMap(){
+        var location = new google.maps.Map(document.getElementById("map"), {
+            zoom: 4,
+            center: location
+        });
+    }
+</script>
+
+
+
+<!--    {{ random_pcd }}-->
+
+<!--    {{ googlemap("mymap", lat=51.52386, lng=-0.117434) }}-->
+
+<!--    <form method="post" name="get_new_address_btn">-->
+<!--        <input type="submit" id="new_address_request" value="PRESS">-->
+<!--    </form>-->
+</body>
+
+</html>
