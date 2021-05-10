@@ -23,22 +23,26 @@
 
 <script>
     function initMap(){
-        var location = new google.maps.Map(document.getElementById("map"), {
-            zoom: 4,
+        var location = {lat: 51.488258, lng: -0.168466};
+        var map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 12,
             center: location
+        });
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map
         });
     }
 </script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2gWJN7HHCh-y15I2kw1A5PqOLU22l3z8&callback=initMap">
 
+</script>
+    {{ random_pcd }}
 
+    <form method="post" name="get_new_address_btn">
+        <input type="submit" id="new_address_request" value="PRESS">
+    </form>
 
-<!--    {{ random_pcd }}-->
-
-<!--    {{ googlemap("mymap", lat=51.52386, lng=-0.117434) }}-->
-
-<!--    <form method="post" name="get_new_address_btn">-->
-<!--        <input type="submit" id="new_address_request" value="PRESS">-->
-<!--    </form>-->
 </body>
 
 </html>
