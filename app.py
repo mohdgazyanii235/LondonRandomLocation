@@ -2,7 +2,6 @@ from flask import Flask , render_template , send_file , request , url_for , redi
 import random
 import linecache
 from flask_googlemaps import GoogleMaps
-from flask_googlemaps import Map
 import math
 import wikipedia
 
@@ -33,7 +32,7 @@ def get_random_pcd():
 
 
 def get_wiki(area_name):
-    return wikipedia.summary(area_name, sentences=5)
+    return wikipedia.summary(area_name, sentences=3)
 
 
 @app.route('/', methods=["GET", "POST"])
@@ -49,4 +48,4 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0', port=800)
+    app.run(debug=False, host='127.0.0.1', port=8000)
