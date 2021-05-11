@@ -14,7 +14,7 @@ GoogleMaps(app)
 def distance_calculator(latitude, longitude):
     min_distance = 99999999999
     min_station = ""
-    with open("D:\LondonRandomLocation\AllLondonStations.csv", "r") as station_file:
+    with open("AllLondonStations.csv", "r") as station_file:
         for line in station_file:
             station_name = line.split(",")[0]
             station_lat = float(line.split(",")[1])
@@ -44,8 +44,9 @@ def home():
     station_name = distance_calculator(float(random_pcd[1]), float(random_pcd[2]))
     print("The closes tube station is: " + station_name)
     print(get_wiki(station_name))
+    #Error present; wikipedia disabiguation error (fix by picking London / station if in title?)
     return render_template("description_page.html", random_pcd=random_pcd)
 
 
 if __name__ == '__main__':
-    app.run(debug=False, host='127.0.0.1', port=8000)
+    app.run(debug=True, host='127.0.0.1', port=8000)
