@@ -4,6 +4,7 @@ import linecache
 from flask_googlemaps import GoogleMaps
 import math
 import wikipedia
+import re
 
 
 app = Flask(__name__)
@@ -31,15 +32,19 @@ def get_random_pcd():
     return linecache.getline("All London PCDs.csv", rand_line_num)
 
 
+def reformat_summary(summary):
+    return re.sub("[==].*[==]", "", summary)
+
+
 def get_wiki(area_name):
     try:
-        return wikipedia.summary(area_name, sentences=7)
+        return reformat_summary(wikipedia.summary(area_name, sentences=7))
     except wikipedia.exceptions.DisambiguationError as e:
         print("ran exception")
         for x in e.options:
             for y in x.split(" "):
                 if y == "London" or y == "london":
-                    return wikipedia.summary(x, sentences=7)
+                    return reformat_summary(wikipedia.summary(x, sentences=7))
         else:
             return "Unfortunately we weren't able to find a description of this location"
 
@@ -51,7 +56,7 @@ def home():
         random_pcd = get_random_pcd()
     random_pcd = random_pcd.split(",")
     station_name = distance_calculator(float(random_pcd[1]), float(random_pcd[2]))
-    # Error present; wikipedia disabiguation error (fix by picking London / station if in title?)
+
     print(station_name)
     return render_template("description_page.html", random_pcd=random_pcd, description=get_wiki(station_name),
                            station_name=station_name)
