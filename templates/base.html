@@ -13,7 +13,7 @@
 
     <style>
         #map {
-            height: 2500%;
+            height: 600px;
             width: 100%;
             backgroundColor: gray;
         }
@@ -73,6 +73,11 @@
         <div id="map"></div>
     </div>
     <div class="col-md-6">
+        Postcode: {{ random_pcd[0] }}
+        <br>
+        Nearest Tube Station: {{ station_name }}
+        <br>
+        <br>
         {% block content %}
         {% endblock %}
     </div>
@@ -89,6 +94,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+
+<footer style="height: 75px; background-color: white;">
+    <br>
+    Built by Lance Developments
+</footer>
 
 </body>
 
