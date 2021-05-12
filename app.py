@@ -47,6 +47,8 @@ def get_wiki(area_name):
                     return reformat_summary(wikipedia.summary(x, sentences=7))
         else:
             return "Unfortunately we weren't able to find a description of this location"
+    except wikipedia.exceptions.PageError as e:
+        return "Unfortunately we weren't able to find a description of this location"
 
 
 @app.route('/', methods=["GET", "POST"])
