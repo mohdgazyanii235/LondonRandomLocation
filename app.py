@@ -15,7 +15,7 @@ GoogleMaps(app)
 def distance_calculator(latitude, longitude):
     min_distance = 99999999999
     min_station = ""
-    with open("AllLondonStations.csv", "r") as station_file:
+    with open("D:\LondonRandomLocation\AllLondonStations.csv", "r") as station_file:
         for line in station_file:
             station_name = line.split(",")[0]
             station_lat = float(line.split(",")[1])
