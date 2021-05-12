@@ -15,7 +15,7 @@ GoogleMaps(app)
 def distance_calculator(latitude, longitude):
     min_distance = 99999999999
     min_station = ""
-    with open("AllLondonStations.csv", "r") as station_file:
+    with open("D:\LondonRandomLocation\AllLondonStations.csv", "r") as station_file:
         for line in station_file:
             station_name = line.split(",")[0]
             station_lat = float(line.split(",")[1])
@@ -43,10 +43,10 @@ def get_wiki(area_name):
         print("ran exception")
         for x in e.options:
             for y in x.split(" "):
-                if y == "London" or y == "london":
+                if y.lower() == "london":
                     return reformat_summary(wikipedia.summary(x, sentences=7))
-        else:
-            return "Unfortunately we weren't able to find a description of this location"
+                else:
+                    return "Unfortunately we weren't able to find a description of this location"
     except wikipedia.exceptions.PageError as e:
         return "Unfortunately we weren't able to find a description of this location"
 
