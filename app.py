@@ -1,4 +1,4 @@
-from flask import Flask , render_template , send_file , request , url_for , redirect , flash , session , Markup
+from flask import Flask, render_template, send_file, request, url_for, redirect, flash, session, Markup
 import random
 import linecache
 from flask_googlemaps import GoogleMaps
@@ -32,7 +32,16 @@ def get_random_pcd():
 
 
 def get_wiki(area_name):
-    return wikipedia.summary(area_name, sentences=3)
+    try:
+        return wikipedia.summary(area_name, sentences=7)
+    except wikipedia.exceptions.DisambiguationError as e:
+        print("ran exception")
+        for x in e.options:
+            for y in x.split(" "):
+                if y == "London" or y == "london":
+                    return wikipedia.summary(x, sentences=7)
+        else:
+            return "Unfortunately we weren't able to find a description of this location"
 
 
 @app.route('/', methods=["GET", "POST"])
@@ -42,10 +51,10 @@ def home():
         random_pcd = get_random_pcd()
     random_pcd = random_pcd.split(",")
     station_name = distance_calculator(float(random_pcd[1]), float(random_pcd[2]))
-    print("The closes tube station is: " + station_name)
-    print(get_wiki(station_name))
-    #Error present; wikipedia disabiguation error (fix by picking London / station if in title?)
-    return render_template("description_page.html", random_pcd=random_pcd)
+    # Error present; wikipedia disabiguation error (fix by picking London / station if in title?)
+    print(station_name)
+    return render_template("description_page.html", random_pcd=random_pcd, description=get_wiki(station_name),
+                           station_name=station_name)
 
 
 if __name__ == '__main__':
